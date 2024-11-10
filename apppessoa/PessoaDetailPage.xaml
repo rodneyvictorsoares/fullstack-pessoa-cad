@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="apppessoa.PessoaDetailPage"
+             Title="Detalhes da Pessoa">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Clicked="OnSaveClicked" />
+        <ToolbarItem Text="Excluir" Clicked="OnDeleteClicked" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10">
+            <Entry Placeholder="Nome" x:Name="NomeEntry" Text="{Binding Nome}" />
+            <Entry Placeholder="CPF" x:Name="CpfEntry" Text="{Binding Cpf}" Keyboard="Numeric" />
+            <Entry Placeholder="Logradouro" x:Name="LogradouroEntry" Text="{Binding EnderecoObj.Logradouro}" />
+            <Entry Placeholder="Numero" x:Name="NumeroEntry" Text="{Binding EnderecoObj.Numero}" Keyboard="Numeric" />
+            <Entry Placeholder="CEP" x:Name="CepEntry" Text="{Binding EnderecoObj.Cep}" Keyboard="Numeric" />
+            <Entry Placeholder="Bairro" x:Name="BairroEntry" Text="{Binding EnderecoObj.Bairro}" />
+            <Entry Placeholder="Cidade" x:Name="CidadeEntry" Text="{Binding EnderecoObj.Cidade}" />
+            <Entry Placeholder="Estado" x:Name="EstadoEntry" Text="{Binding EnderecoObj.Estado}" />
+            <Label Text="Telefones"  FontAttributes="Bold" />
+            <CollectionView x:Name="TelefonesColletionView" ItemsSource="{Binding Telefones}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Entry Placeholder="DDD" Text="{Binding Ddd}" Keyboard="Numeric" WidthRequest="50" />
+                            <Entry Placeholder="Número" Text="{Binding Numero}" Keyboard="Numeric" WidthRequest="150" />
+                            <Picker Title="Tipo" SelectedItem="{Binding Tipo}" WidthRequest="100">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:Int32}">
+                                        <x:Int32>2</x:Int32>
+                                        <x:Int32>3</x:Int32>
+                                        <x:Int32>4</x:Int32>
+                                        <x:Int32>5</x:Int32>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Adicionar Telefone" Clicked="OnAddTelefoneClicked" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

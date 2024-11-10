@@ -1,0 +1,41 @@
+﻿@model IEnumerable<webpessoa.Models.Pessoa>
+
+@{
+    ViewData["Title"] = "Lista de Pessoas Cadastradas";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-success">Adicionar Nova Pessoa</a>
+</div>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Endereço</th>
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pessoa in Model)
+        {
+            <tr>
+                <td>@pessoa.Nome</td>
+                <td>@pessoa.Cpf</td>
+                <td>
+                    @pessoa.EnderecoObj?.Logradouro,
+                    @pessoa.EnderecoObj?.Cidade,
+                    @pessoa.EnderecoObj?.Estado
+                </td>
+                <td class="text-center">
+                    <a asp-action="Details" asp-route-id="@pessoa.Id" class="btn btn-info btn-sm">Detalhar</a>
+                    <a asp-action="Edit" asp-route-id="@pessoa.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@pessoa.Id" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

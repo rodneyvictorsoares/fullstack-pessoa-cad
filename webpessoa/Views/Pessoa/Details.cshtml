@@ -1,0 +1,60 @@
+﻿@model webpessoa.Models.Pessoa
+
+@{
+    ViewData["Title"] = "Detalhes da Pessoa";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="card mb-3">
+    <div class="card-header">
+        Dados Pessoais
+    </div>
+    <div class="card-body">
+        <p><strong>Nome: </strong> @Model.Nome</p>
+        <p><strong>CPF: </strong> @Model.Cpf</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        Endereço
+    </div>
+    <div class="card-body">
+        <p><strong>Logradouro: </strong> @Model.EnderecoObj.Logradouro</p>
+        <p><strong>Número: </strong> @Model.EnderecoObj.Numero</p>
+        <p><strong>CEP: </strong> @Model.EnderecoObj.Cep</p>
+        <p><strong>Bairro: </strong> @Model.EnderecoObj.Bairro</p>
+        <p><strong>Cidade: </strong> @Model.EnderecoObj.Cidade</p>
+        <p><strong>Estado: </strong> @Model.EnderecoObj.Estado</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">
+        Telefones
+    </div>
+    <div class="card-body">
+        @if (Model.Telefones != null && Model.Telefones.Count > 0)
+        {
+            <ul class="list-group">
+                @foreach (var telefone in Model.Telefones)
+                {
+                    <li class="list-group-item">
+                        <strong>Número: </strong> @telefone.Ddd @telefone.Numero <br />
+                        <strong>Tipo: </strong> @telefone.Tipo <br />
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Nenhum telefone está cadastrado.</p>
+        }
+    </div>
+</div>
+<div class="text-end">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+</div>
+

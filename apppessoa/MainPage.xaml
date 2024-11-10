@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             Title="Lista de Pessoas" 
+             x:Class="apppessoa.MainPage"
+             >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adicionar" Clicked="OnAddPessoaClicked" />
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="10">
+        <CollectionView x:Name="PessoasCollectionView" SelectionMode="Single" SelectionChanged="OnPessoaSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="10" BackgroundColor="LightGray" CornerRadius="5">
+                        <StackLayout>
+                            <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Medium" />
+                            <Label Text="{Binding Cpf}" FontSize="Small" />
+                            <Label Text="{Binding EnderecoObj.Logradouro}" FontSize="Small" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+
+</ContentPage>

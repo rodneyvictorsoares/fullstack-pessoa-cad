@@ -1,0 +1,26 @@
+﻿@model webpessoa.Models.Pessoa
+
+@{
+    ViewData["Title"] = "Excluir Pessoa";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<h3 class="text-danger">Tem certeza que deseja exluir o regiostro dessa pessoa?</h3>
+<div class="card mb-3">
+    <div class="card-header">
+        Dados Pessoais
+    </div>
+    <div class="card-body">
+        <p><strong>Nome: </strong> @Model.Nome</p>
+        <p><strong>CPF: </strong> @Model.Cpf</p>
+    </div>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="text-end">
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </div>
+</form>
